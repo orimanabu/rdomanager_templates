@@ -85,7 +85,7 @@ resources:
           template: |
             #!/bin/bash
             case "$(hostname)" in
-              *cephstorage*)
+              *ceph*)
                 for d in $disks; do
                   if [ -b ${d} ]; then
                     echo "Wiping disk ${d} ..."
