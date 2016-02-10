@@ -42,8 +42,8 @@ parameter_defaults:
     CeilometerApiNetwork: internal_api
     MongoDbNetwork: internal_api
     CinderApiNetwork: internal_api
-    CinderIscsiNetwork: storage
-    GlanceApiNetwork: storage
+    CinderIscsiNetwork: internal_api
+    GlanceApiNetwork: internal_api
     GlanceRegistryNetwork: internal_api
     KeystoneAdminApiNetwork: internal_api
     KeystonePublicApiNetwork: internal_api
@@ -52,18 +52,18 @@ parameter_defaults:
     NovaApiNetwork: internal_api
     NovaMetadataNetwork: internal_api
     NovaVncProxyNetwork: internal_api
-    SwiftMgmtNetwork: storage_mgmt
-    SwiftProxyNetwork: storage
+    SwiftMgmtNetwork: internal_api
+    SwiftProxyNetwork: internal_api
     HorizonNetwork: internal_api
     MemcachedNetwork: internal_api
     RabbitMqNetwork: internal_api
     RedisNetwork: internal_api
     MysqlNetwork: internal_api
-    CephClusterNetwork: storage_mgmt
-    CephPublicNetwork: storage
+    CephClusterNetwork: internal_api
+    CephPublicNetwork: internal_api
     # Define which network will be used for hostname resolution
     ControllerHostnameResolveNetwork: internal_api
     ComputeHostnameResolveNetwork: internal_api
     BlockStorageHostnameResolveNetwork: internal_api
     ObjectStorageHostnameResolveNetwork: internal_api
-    CephStorageHostnameResolveNetwork: storage
+    CephStorageHostnameResolveNetwork: internal_api
