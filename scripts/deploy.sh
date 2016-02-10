@@ -29,9 +29,10 @@ time openstack overcloud deploy \
 -e ~/templates/tht/environments/network-isolation.yaml \
 -e ~/templates/network-environment.yaml \
 -e ~/templates/storage-environment.yaml \
--e ~/templates/ceph_osd_setup.yaml \
--e ~/templates/swap_setup.yaml \
--e ~/templates/misc_setup.yaml
+-e ~/templates/all.yaml
+#-e ~/templates/ceph_osd_setup.yaml \
+#-e ~/templates/swap_setup.yaml \
+#-e ~/templates/misc_setup.yaml
 
 echo "=> end date"
 date
