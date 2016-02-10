@@ -23,9 +23,8 @@ time openstack overcloud deploy \
 --control-scale 1 \
 --compute-scale 1 \
 --ceph-storage-scale 1 \
---neutron-tunnel-types vxlan \
---neutron-network-type vxlan \
 --libvirt-type kvm \
+--neutron-network-vlan-ranges datacentre:800:900 \
 -e ~/templates/tht/environments/network-isolation.yaml \
 -e ~/templates/network-environment.yaml \
 -e ~/templates/storage-environment.yaml \
@@ -33,6 +32,8 @@ time openstack overcloud deploy \
 #-e ~/templates/ceph_osd_setup.yaml \
 #-e ~/templates/swap_setup.yaml \
 #-e ~/templates/misc_setup.yaml
+#--neutron-tunnel-types vxlan \
+#--neutron-network-type vxlan \
 
 echo "=> end date"
 date
