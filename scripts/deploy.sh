@@ -22,6 +22,8 @@ time openstack overcloud deploy \
 -e ~/templates/network-environment.yaml \
 -e ~/templates/all.yaml
 
+#-e ~/templates/environments/network-isolation.yaml \
+
 ## ceph
 #--ceph-storage-scale 1 \
 #-e ~/templates/storage-environment.yaml \
