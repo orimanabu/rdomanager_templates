@@ -32,6 +32,7 @@ parameter_defaults:
   ExternalNetworkVlanID: 100
   # Set to "br-ex" if using floating IPs on native VLAN on bridge br-ex
   NeutronExternalNetworkBridge: "''"
+  NeutronNetworkType: 'vlan'
   # Customize bonding options if required
   BondInterfaceOvsOptions:
 #    "bond_mode=balance-slb"
