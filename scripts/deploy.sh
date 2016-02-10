@@ -18,11 +18,12 @@ time openstack overcloud deploy \
 --compute-scale 1 \
 --libvirt-type kvm \
 --neutron-network-vlan-ranges datacentre:800:900 \
--e ~/templates/tht/environments/network-isolation.yaml \
+-e ~/templates/network-isolation.yaml \
 -e ~/templates/network-environment.yaml \
 -e ~/templates/all.yaml
 
 #-e ~/templates/environments/network-isolation.yaml \
+#-e ~/templates/tht/environments/network-isolation.yaml \
 
 ## ceph
 #--ceph-storage-scale 1 \
