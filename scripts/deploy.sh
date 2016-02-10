@@ -14,8 +14,8 @@ time openstack overcloud deploy \
 --swift-storage-flavor control \
 --ceph-storage-flavor storage \
 --block-storage-flavor control \
---control-scale 1 \
---compute-scale 1 \
+--control-scale 3 \
+--compute-scale 2 \
 --libvirt-type kvm \
 --neutron-network-vlan-ranges datacentre:800:900 \
 -e ~/templates/network-isolation.yaml \
