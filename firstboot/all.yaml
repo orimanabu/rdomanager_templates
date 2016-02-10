@@ -41,7 +41,7 @@ resources:
 
         # ceph
         case "$(hostname)" in
-          ceph*)
+          *ceph*)
             echo "XXX $(hostname)" >> /root/firstboot.log
             #devprefix=sd
             devprefix=vd
