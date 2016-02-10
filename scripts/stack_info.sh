@@ -1,6 +1,11 @@
 #!/bin/bash
 
-source ~/stackrc
+if [ x"$#" != x"1" ]; then
+	echo "$0 rcfile"
+	exit 1
+fi
+rcfile=$1; shift
+source ${rcfile}
 
 function do_command {
 	local args=$*
@@ -26,8 +31,12 @@ for id in ${hv_ids}; do
 	do_command nova hypervisor-show ${id}
 done
 
-do_command openstack server list
-vm_ids=$(openstack server list -c ID -f csv --quote none | grep -v ID)
+opts=""
+if [ x"${OS_TENANT_NAME}" = x"admin" ]; then
+	opts="--all-projects"
+fi
+do_command openstack server list ${opts}
+vm_ids=$(openstack server list ${opts} -c ID -f csv --quote none | grep -v ID)
 for id in ${vm_ids}; do
 	do_command openstack server show ${id}
 done
@@ -64,6 +73,12 @@ do_command neutron port-list
 port_ids=$(neutron port-list -c id -f csv --quote none | grep -v id)
 for id in ${port_ids}; do
 	do_command neutron port-show ${id}
+done
+
+do_command neutron router-list
+router_ids=$(neutron router-list -c id -f csv --quote none | grep -v id)
+for id in ${router_ids}; do
+	do_command neutron router-show ${id}
 done
 
 do_command openstack image list
