@@ -2,24 +2,35 @@ heat_template_version: 2015-04-30
 description: 'OpenStack swift storage node post deployment for Puppet'
 
 parameters:
+  ConfigDebug:
+    default: false
+    description: Whether to run config management (e.g. Puppet) in debug mode.
+    type: boolean
   servers:
     type: json
   NodeConfigIdentifiers:
      type: json
      description: Value which changes if the node configuration may need to be re-applied
-  UpdateIdentifier:
-    default: ''
-    type: string
-    description: >
-      Setting to a previously unused value during stack-update will trigger
-      package update on all nodes
 
 resources:
+
+  StorageArtifactsConfig:
+    type: deploy-artifacts.yaml
+
+  StorageArtifactsDeploy:
+    type: OS::Heat::StructuredDeployments
+    properties:
+      servers:  {get_param: servers}
+      config: {get_resource: StorageArtifactsConfig}
+      input_values:
+        update_identifier: {get_param: NodeConfigIdentifiers}
 
   StoragePuppetConfig:
     type: OS::Heat::SoftwareConfig
     properties:
       group: puppet
+      options:
+        enable_debug: {get_param: ConfigDebug}
       outputs:
       - name: result
       config:
@@ -27,7 +38,9 @@ resources:
 
   StorageDeployment_Step1:
     type: OS::Heat::StructuredDeployments
+    depends_on: StorageArtifactsDeploy
     properties:
+      name: StorageDeployment_Step1
       servers:  {get_param: servers}
       config: {get_resource: StoragePuppetConfig}
       input_values:
@@ -37,6 +50,8 @@ resources:
     type: OS::Heat::SoftwareConfig
     properties:
       group: puppet
+      options:
+        enable_debug: {get_param: ConfigDebug}
       outputs:
       - name: result
       config:
@@ -46,22 +61,16 @@ resources:
     type: OS::Heat::StructuredDeployments
     depends_on: StorageDeployment_Step1
     properties:
+      name: StorageRingbuilderDeployment_Step2
       servers:  {get_param: servers}
       config: {get_resource: StorageRingbuilderPuppetConfig}
       input_values:
         update_identifier: {get_param: NodeConfigIdentifiers}
 
-  StoragePostPuppetDeployment:
-    type: OS::TripleO::Tasks::StoragePostPuppet
-    depends_on: StorageRingbuilderDeployment_Step2
-    properties:
-      servers: {get_param: servers}
-      update_identifier: {get_param: UpdateIdentifier}
-
   # Note, this should come last, so use depends_on to ensure
   # this is created after any other resources.
   ExtraConfig:
-    depends_on: StoragePostPuppetDeployment
+    depends_on: StorageRingbuilderDeployment_Step2
     type: OS::TripleO::NodeExtraConfigPost
     properties:
         servers: {get_param: servers}

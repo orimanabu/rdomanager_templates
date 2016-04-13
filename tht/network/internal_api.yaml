@@ -12,10 +12,10 @@ parameters:
   InternalApiNetValueSpecs:
     default: {'provider:physical_network': 'internal_api', 'provider:network_type': 'flat'}
     description: Value specs for the internal API network.
-    type: string
+    type: json
   InternalApiNetAdminStateUp:
     default: false
-    description: This admin state of of the network.
+    description: This admin state of the network.
     type: boolean
   InternalApiNetEnableDHCP:
     default: false

@@ -8,5 +8,5 @@ Contents
   To be used if the Keystone Admin API was originally deployed on the
   Internal API network.
 
-**update-from-vip.yaml**
-  To be used if the VIP resources were mapped to VipPort (vip.yaml) during the initial Overcloud deployment.
+**update-from-publicvip-on-ctlplane.yaml**
+  To be used if the PublicVirtualIP resource was deployed as an additional VIP on the 'ctlplane'.

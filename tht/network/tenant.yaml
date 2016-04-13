@@ -12,10 +12,10 @@ parameters:
   TenantNetValueSpecs:
     default: {'provider:physical_network': 'tenant', 'provider:network_type': 'flat'}
     description: Value specs for the tenant network.
-    type: string
+    type: json
   TenantNetAdminStateUp:
     default: false
-    description: This admin state of of the network.
+    description: This admin state of the network.
     type: boolean
   TenantNetEnableDHCP:
     default: false
