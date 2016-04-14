@@ -9,19 +9,23 @@ echo "=> overcloud deploy"
 time openstack overcloud deploy \
 --templates ~/templates/tht \
 --ntp-server 10.5.26.10 \
---control-flavor control \
---compute-flavor compute \
---swift-storage-flavor control \
---ceph-storage-flavor storage \
---block-storage-flavor control \
+--libvirt-type kvm \
 --control-scale 3 \
 --compute-scale 2 \
---libvirt-type kvm \
---neutron-network-vlan-ranges datacentre:800:900 \
+--control-flavor control \
+--compute-flavor compute \
+--neutron-tunnel-types vxlan \
+--neutron-network-type vxlan \
+-e ~/templates/ips-from-pool-all.yaml \
+-e ~/templates/scheduler-hints.yaml \
 -e ~/templates/network-isolation.yaml \
 -e ~/templates/network-environment.yaml \
+-e ~/templates/timezone.yaml \
 -e ~/templates/all.yaml
 
+#--debug --verbose \
+
+#--neutron-network-vlan-ranges datacentre:800:900 \
 #-e ~/templates/environments/network-isolation.yaml \
 #-e ~/templates/tht/environments/network-isolation.yaml \
 
