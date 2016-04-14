@@ -12,10 +12,13 @@ time openstack overcloud deploy \
 --libvirt-type kvm \
 --control-scale 3 \
 --compute-scale 2 \
+--ceph-storage-scale 1 \
 --control-flavor control \
 --compute-flavor compute \
+--ceph-storage-flavor storage \
 --neutron-tunnel-types vxlan \
 --neutron-network-type vxlan \
+-e ~/templates/storage-environment.yaml \
 -e ~/templates/network-isolation-static.yaml \
 -e ~/templates/network-environment.yaml \
 -e ~/templates/timezone.yaml \

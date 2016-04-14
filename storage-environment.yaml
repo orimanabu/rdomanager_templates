@@ -59,10 +59,13 @@ parameter_defaults:
 
 parameter_defaults:
   ExtraConfig:
+    ceph::profile::params::osd_pool_default_pg_num: 256
+    ceph::profile::params::osd_pool_default_pgp_num: 256
+    ceph::profile::params::osd_pool_default_size: 1
     ceph::profile::params::osds:
         '/dev/vdc':
           journal: '/dev/vdb'
         '/dev/vdd':
           journal: '/dev/vdb'
-        '/dev/vdr':
+        '/dev/vde':
           journal: '/dev/vdb'
