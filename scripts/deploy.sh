@@ -16,12 +16,14 @@ time openstack overcloud deploy \
 --compute-flavor compute \
 --neutron-tunnel-types vxlan \
 --neutron-network-type vxlan \
--e ~/templates/ips-from-pool-all.yaml \
--e ~/templates/scheduler-hints.yaml \
--e ~/templates/network-isolation.yaml \
+-e ~/templates/network-isolation-static.yaml \
 -e ~/templates/network-environment.yaml \
 -e ~/templates/timezone.yaml \
 -e ~/templates/all.yaml
+
+#-e ~/templates/ips-from-pool-all.yaml \
+#-e ~/templates/scheduler-hints.yaml \
+#-e ~/templates/network-isolation.yaml \
 
 #--debug --verbose \
 
