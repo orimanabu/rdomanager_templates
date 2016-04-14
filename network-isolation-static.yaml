@@ -81,7 +81,7 @@ parameter_defaults:
     overcloud-novacompute-1: osp8-compute-2
     overcloud-cephstorage-0: osp8-ceph-1
 
-  ControlPlaneIP: 10.0.9.110
+  ControlPlaneIP: 10.0.9.210
   ExternalNetworkVip: 10.1.1.210
   InternalApiNetworkVip: 172.16.201.210
   StorageNetworkVip: 172.16.203.210
