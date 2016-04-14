@@ -6,15 +6,15 @@ resource_registry:
   OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/ceph-storage.yaml
 
 parameter_defaults:
-  InternalApiNetCidr: 172.16.0.0/24
-  TenantNetCidr: 172.17.0.0/24
-  StorageNetCidr: 172.18.0.0/24
-  StorageMgmtNetCidr: 172.19.0.0/24
+  InternalApiNetCidr: 172.16.201.0/24
+  TenantNetCidr: 172.16.202.0/24
+  StorageNetCidr: 172.16.203.0/24
+  StorageMgmtNetCidr: 172.16.204.0/24
   ExternalNetCidr: 10.1.1.0/24
-  InternalApiAllocationPools: [{'start': '172.16.0.210', 'end': '172.16.0.240'}]
-  TenantAllocationPools: [{'start': '172.17.0.210', 'end': '172.17.0.240'}]
-  StorageAllocationPools: [{'start': '172.18.0.210', 'end': '172.18.0.240'}]
-  StorageMgmtAllocationPools: [{'start': '172.19.0.210', 'end': '172.19.0.240'}]
+  InternalApiAllocationPools: [{'start': '172.16.201.210', 'end': '172.16.201.240'}]
+  TenantAllocationPools: [{'start': '172.16.202.210', 'end': '172.16.202.240'}]
+  StorageAllocationPools: [{'start': '172.16.203.210', 'end': '172.16.203.240'}]
+  StorageMgmtAllocationPools: [{'start': '172.16.204.210', 'end': '172.16.204.240'}]
   # Leave room for floating IPs in the External allocation pool
   ExternalAllocationPools: [{'start': '10.1.1.210', 'end': '10.1.1.240'}]
   # Set to the router gateway on the external network
@@ -26,44 +26,17 @@ parameter_defaults:
   # Define the DNS servers (maximum 2) for the overcloud nodes
   DnsServers: ["10.64.255.25","10.68.5.25"]
   InternalApiNetworkVlanID: 201
-  StorageNetworkVlanID: 202
-  StorageMgmtNetworkVlanID: 203
-  TenantNetworkVlanID: 204
+  TenantNetworkVlanID: 202
+  StorageNetworkVlanID: 203
+  StorageMgmtNetworkVlanID: 204
   ExternalNetworkVlanID: 100
   # Set to "br-ex" if using floating IPs on native VLAN on bridge br-ex
   NeutronExternalNetworkBridge: "''"
-  NeutronNetworkType: 'vlan'
+#  NeutronNetworkType: 'vlan'
   # Customize bonding options if required
   BondInterfaceOvsOptions:
 #    "bond_mode=balance-slb"
     "bond_mode=active-backup"
-  ServiceNetMap:
-    NeutronTenantNetwork: tenant
-    CeilometerApiNetwork: internal_api
-    MongoDbNetwork: internal_api
-    CinderApiNetwork: internal_api
-    CinderIscsiNetwork: internal_api
-    GlanceApiNetwork: internal_api
-    GlanceRegistryNetwork: internal_api
-    KeystoneAdminApiNetwork: internal_api
-    KeystonePublicApiNetwork: internal_api
-    NeutronApiNetwork: internal_api
-    HeatApiNetwork: internal_api
-    NovaApiNetwork: internal_api
-    NovaMetadataNetwork: internal_api
-    NovaVncProxyNetwork: internal_api
-    SwiftMgmtNetwork: internal_api
-    SwiftProxyNetwork: internal_api
-    HorizonNetwork: internal_api
-    MemcachedNetwork: internal_api
-    RabbitMqNetwork: internal_api
-    RedisNetwork: internal_api
-    MysqlNetwork: internal_api
-    CephClusterNetwork: internal_api
-    CephPublicNetwork: internal_api
-    # Define which network will be used for hostname resolution
-    ControllerHostnameResolveNetwork: internal_api
-    ComputeHostnameResolveNetwork: internal_api
-    BlockStorageHostnameResolveNetwork: internal_api
-    ObjectStorageHostnameResolveNetwork: internal_api
-    CephStorageHostnameResolveNetwork: internal_api
+#  ServiceNetMap:
+#    KeystoneAdminApiNetwork: internal_api # allows undercloud to config endpoints
+

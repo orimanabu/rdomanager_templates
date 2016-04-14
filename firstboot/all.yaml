@@ -37,7 +37,7 @@ resources:
         systemctl restart sshd
 
         # timezone
-        timedatectl set-timezone Asia/Tokyo
+        #timedatectl set-timezone Asia/Tokyo
 
         # ceph
         case "$(hostname)" in
@@ -56,6 +56,10 @@ resources:
             done
           ;;
         esac
+
+        # create tail.sh
+        echo "journalctl -fl | grep -Ev '((proxy|account|object|container)-server|haproxy|to rabbitmq|[Ss]ession.*rabbitmq|cinder-rootwrap|snmpd)'" > /root/tail.sh
+        chmod +x /root/tail.sh
 
 outputs:
   OS::stack_id:
