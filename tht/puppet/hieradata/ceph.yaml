@@ -1,18 +1,9 @@
 ceph::profile::params::osd_journal_size: 1024
 ceph::profile::params::osd_pool_default_pg_num: 32
 ceph::profile::params::osd_pool_default_pgp_num: 32
-#ceph::profile::params::osd_pool_default_size: 3
-ceph::profile::params::osd_pool_default_size: 1
+ceph::profile::params::osd_pool_default_size: 3
 ceph::profile::params::osd_pool_default_min_size: 1
-#ceph::profile::params::osds: {/srv/data: {}}
-ceph::profile::params::osds:
-  '/dev/vdb':
-    journal: '/dev/vde'
-  '/dev/vdc':
-    journal: '/dev/vde'
-  '/dev/vdd':
-    journal: '/dev/vde'
-
+ceph::profile::params::osds: {/srv/data: {}}
 ceph::profile::params::manage_repo: false
 ceph::profile::params::authentication_type: cephx
 
