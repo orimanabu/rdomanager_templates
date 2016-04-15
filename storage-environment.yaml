@@ -57,7 +57,6 @@ parameter_defaults:
   ## Ceph admin key, e.g. 'AQDLOh1VgEp6FRAAFzT7Zw+Y9V6JJExQAsRnRQ=='
   # CephAdminKey: ''
 
-parameter_defaults:
   ExtraConfig:
     ceph::profile::params::osd_pool_default_pg_num: 256
     ceph::profile::params::osd_pool_default_pgp_num: 256
