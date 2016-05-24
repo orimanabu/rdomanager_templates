@@ -789,7 +789,7 @@ parameters:
   ComputeHostnameFormat:
     type: string
     description: Format for Compute node hostnames
-    default: '%stackname%-novacompute-%index%'
+    default: '%stackname%-compute-%index%'
   BlockStorageHostnameFormat:
     type: string
     description: Format for BlockStorage node hostnames
@@ -1675,3 +1675,9 @@ outputs:
   SwiftInternalVip:
     description: VIP for Swift Proxy internal endpoint
     value: {get_attr: [VipMap, net_ip_map, {get_param: [ServiceNetMap, SwiftProxyNetwork]}]}
+  EndpointMap:
+    description: |
+      Mapping of the resources with the needed info for their endpoints.
+      This includes the protocol used, the IP, port and also a full
+      representation of the URI.
+    value: {get_attr: [EndpointMap, endpoint_map]}

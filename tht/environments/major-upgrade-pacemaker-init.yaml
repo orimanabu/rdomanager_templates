@@ -4,10 +4,10 @@ parameter_defaults:
     set -e
     if subscription-manager status >/dev/null 2<&1; then
       subscription-manager repos --disable=rhel-7-server-openstack-7.0-rpms --disable=rhel-7-server-openstack-7.0-director-rpms
-      subscription-manager repos --enable=rhel-7-server-openstack-8.0-rpms --enable=rhel-7-server-openstack-8.0-director-rpms
+      subscription-manager repos --enable=rhel-7-server-openstack-8-rpms --enable=rhel-7-server-openstack-8-director-rpms
     elif rhn-channel -l >/dev/null 2>&1; then
-      rhn-channel --remove --channel=rhel-x86_64-server-7-ost-7 --channel=rhel-x86_64-server-7-ost-7-director
-      rhn-channel --add --channel=rhel-x86_64-server-7-ost-8 --channel=rhel-x86_64-server-7-ost-8-director
+      rm -f /etc/sysconfig/rhn/systemid  2>/dev/null
+      rhnreg_ks --activationkey='_RHEL_REG_ACTIVATION_KEY_' --serverUrl='_RHEL_REG_SAT_URL_/XMLRPC' --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT  --force
     fi
 
 resource_registry:
